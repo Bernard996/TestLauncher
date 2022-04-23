@@ -29,6 +29,11 @@ public class RAdapter extends RecyclerView.Adapter<RAdapter.ViewHolder> {
         appsList.add(app);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static void sortList() {
+        appsList.sort(Comparator.comparing((AppInfo a) -> a.label.toString()));
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView textView;
         public ImageView img;

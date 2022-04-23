@@ -5,6 +5,8 @@
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.31302083333333336" />
         <entry key="app/src/main/res/layout/apps_drawer.xml" value="0.31302083333333336" />
+        <entry key="app/src/main/res/layout/fragment_home_screen.xml" value="0.31302083333333336" />
+        <entry key="app/src/main/res/layout/fragment_homescreen.xml" value="0.31302083333333336" />
         <entry key="app/src/main/res/layout/row.xml" value="0.2382084819659136" />
       </map>
     </option>

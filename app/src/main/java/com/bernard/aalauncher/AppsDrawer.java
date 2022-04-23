@@ -15,6 +15,7 @@ import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ import java.util.List;
 public class AppsDrawer extends AppCompatActivity {
 
     RecyclerView recyclerView;
+    public RAdapter rAdapter = new RAdapter();
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -35,7 +37,7 @@ public class AppsDrawer extends AppCompatActivity {
         Context c = getApplicationContext();
 
         recyclerView = findViewById(R.id.appsList);
-        recyclerView.setAdapter(new RAdapter());
+        recyclerView.setAdapter(rAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(c,6));
         recyclerView.addItemDecoration(new SpacesItemDecoration(20));
 
@@ -54,6 +56,7 @@ public class AppsDrawer extends AppCompatActivity {
 
     public class MyThread extends AsyncTask<Void, Void, String> {
 
+        @RequiresApi(api = Build.VERSION_CODES.N)
         @Override
         protected String doInBackground(Void... Params) {
 
@@ -71,6 +74,8 @@ public class AppsDrawer extends AppCompatActivity {
                 app.icon = ri.activityInfo.loadIcon(pm);
                 RAdapter.addApp(app);
             }
+            RAdapter.sortList();
+
             return "Success";
 
         }
@@ -78,6 +83,7 @@ public class AppsDrawer extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
+            rAdapter.notifyItemInserted(rAdapter.getItemCount()-1);
         }
 
     }
