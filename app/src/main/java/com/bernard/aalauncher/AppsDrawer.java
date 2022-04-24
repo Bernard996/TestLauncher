@@ -40,6 +40,7 @@ public class AppsDrawer extends AppCompatActivity {
         recyclerView.setAdapter(rAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(c,6));
         recyclerView.addItemDecoration(new SpacesItemDecoration(20));
+        
 
         myThread.execute();
 
@@ -74,8 +75,6 @@ public class AppsDrawer extends AppCompatActivity {
                 app.icon = ri.activityInfo.loadIcon(pm);
                 RAdapter.addApp(app);
             }
-            RAdapter.sortList();
-
             return "Success";
 
         }

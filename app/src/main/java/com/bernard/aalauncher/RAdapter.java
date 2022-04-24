@@ -31,7 +31,7 @@ public class RAdapter extends RecyclerView.Adapter<RAdapter.ViewHolder> {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static void sortList() {
-        appsList.sort(Comparator.comparing((AppInfo a) -> a.label.toString()));
+        appsList.sort(Comparator.comparing((AppInfo a) -> a.label.toString().toLowerCase()));
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -93,6 +93,7 @@ public class RAdapter extends RecyclerView.Adapter<RAdapter.ViewHolder> {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public RAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -100,6 +101,10 @@ public class RAdapter extends RecyclerView.Adapter<RAdapter.ViewHolder> {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 
         View view = inflater.inflate(R.layout.row, parent, false);
+        view.setMinimumWidth(parent.getWidth()/6);
+        view.setMinimumHeight(parent.getHeight()/10);
+
+        sortList();
 
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
